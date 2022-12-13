@@ -18,8 +18,7 @@ const search = event => {
       for (let i = 0; i < resultLength; i++) {
         const list = document.querySelector('photos');
         const li = document.createElement('li');
-        list.append(li);
-        photo = `<img src="${photos[i].previewURL}" />`;
+        list.append;
       }
     })
     .catch(function (error) {
