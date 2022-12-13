@@ -4,15 +4,19 @@ import Notiflix from 'notiflix';
 
 const input = document.querySelector('input');
 
+const photoPerPage = 40;
+const page = 1;
+
 const search = event => {
   const searchImage = input.value;
   event.preventDefault();
-  const url = `https://pixabay.com/api/?key=13558836-548568db06f41293b437b04a2&q=${searchImage}&image_type=photo$orientation=horizontal$safesearch=true`;
+  const url = `https://pixabay.com/api/?key=13558836-548568db06f41293b437b04a2&q=${searchImage}&image_type=photo$orientation=horizontal$per_page=${photoPerPage}$page=${page}$safesearch=true`;
   const list = document.querySelector('.gallery');
   const clear = document.querySelector('.gallery>ul');
   if (clear !== null) {
     clear.remove();
   }
+
   axios
     .get(`${url}`)
     .then(function (response) {
@@ -30,9 +34,7 @@ const search = event => {
         link.className = 'photo-card';
         link.insertAdjacentHTML(
           'beforeend',
-          `<img   object-fit: cover
-          width: 100%
-          height: 80% src = "${photos[i].webformatURL} loading="lazy"" 
+          `<img  src = "${photos[i].webformatURL} loading="lazy"" 
           alt = "${photos[i].tags}"/> <div class="info"> 
           <p class="info-item">
             <b>Likes</b>
@@ -64,5 +66,6 @@ const search = event => {
     });
 };
 
-const btn = document.querySelector('button');
+const btn = document.querySelector('button[type="submit"]');
 btn.addEventListener('click', search);
+// const loadMoreBtn = document.querySelector('button[type="button"]');
