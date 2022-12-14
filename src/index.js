@@ -71,7 +71,6 @@ const search = async event => {
     })
     .finally(function () {
       loadMoreBtn.style.display = 'block';
-      refresh();
     });
 };
 
@@ -140,9 +139,7 @@ const loadMore = event => {
     .catch(function (error) {
       console.log(error);
     })
-    .finally(function () {
-      refresh();
-    });
+    .finally(function () {});
 };
 
 const btn = document.querySelector('button[type="submit"]');
