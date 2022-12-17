@@ -36,7 +36,7 @@ const search = async event => {
       photoList.className = 'gallery-list';
       list.append(photoList);
 
-      if ((event.target = btn)) {
+      if (event.target === btn) {
         Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
       }
 
@@ -75,7 +75,7 @@ const search = async event => {
           </div>`
         );
         loadMoreBtn.style.display = 'flex';
-        if ((event.target = loadMoreBtn)) {
+        if (event.target === loadMoreBtn) {
           const renderedPhoto = document.querySelector('.gallery>ul');
           const elementCount = renderedPhoto.childElementCount;
           renderedPhoto.append(link);
