@@ -51,9 +51,9 @@ const search = async event => {
         link.className = 'photo-card';
         link.insertAdjacentHTML(
           'beforeend',
-          `<a href = "${photos[i].webformatURL}" > 
-            <img  src = "${photos[i].webformatURL} loading="lazy"" 
-            alt = "${photos[i].tags}" /> 
+          `<a href="${photos[i].webformatURL}"> 
+            <img src="${photos[i].webformatURL} loading="lazy"
+            alt = "${photos[i].tags}"/> 
           </a>
           <div class="info"> 
             <p class="info-item">
