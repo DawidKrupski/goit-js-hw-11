@@ -6,7 +6,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const input = document.querySelector('input');
 const btn = document.querySelector('button[type="submit"]');
-const loadMoreBtn = document.querySelector('button[type="button"]');
+const loadMoreBtn = document.querySelector('.load-more');
 loadMoreBtn.style.display = 'none';
 
 const photoPerPage = 40;
@@ -75,7 +75,7 @@ const search = async event => {
           </div>`
         );
         loadMoreBtn.style.display = 'flex';
-        if (event.target === loadMoreBtn) {
+        if (event.target === loadMoreBtn || event === undefined) {
           const renderedPhoto = document.querySelector('.gallery>ul');
           const elementCount = renderedPhoto.childElementCount;
           renderedPhoto.append(link);
@@ -115,3 +115,34 @@ let lightbox = new simpleLightbox('.photo-card a', {
 
 btn.addEventListener('click', search);
 loadMoreBtn.addEventListener('click', search);
+
+const backTop = document.querySelector('.back-top');
+window.onscroll = function () {
+  scrollFunction();
+  infiniteScroll();
+};
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    backTop.style.display = 'block';
+  } else {
+    backTop.style.display = 'none';
+  }
+}
+
+function backToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+backTop.addEventListener('click', backToTop);
+
+const switchMethod = document.querySelector('.switch-method');
+if (switchMethod.checked === false) {
+  console.log('dupa');
+}
+
+const infiniteScroll = event => {
+  if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+    console.log('dupa');
+    loadMoreBtn.click();
+  }
+};

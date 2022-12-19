@@ -54,3 +54,23 @@ img {
   margin-left: calc(50% - 0.75vw);
   font-size: 1.5vw;
 }
+.back-top {
+  display: none;
+  position: fixed;
+  bottom: 0.5vw;
+  right: 30px;
+  font-size: 1.5vw;
+  background-color: rgb(34, 34, 83);
+  border: 0px;
+  color: white;
+}
+.back-top:hover {
+  background-color: rgb(110, 110, 143);
+}
+
+.switch-method {
+  position: absolute;
+  display: inline-block;
+  top: 1vw;
+  color: white;
+}
