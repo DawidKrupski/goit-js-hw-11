@@ -74,17 +74,16 @@ const search = async event => {
             </p>
           </div>`
         );
+        const renderedPhoto = document.querySelector('.gallery>ul');
+        const elementCount = renderedPhoto.childElementCount;
         loadMoreBtn.style.display = 'flex';
         if (event.target === loadMoreBtn || event === undefined) {
-          const renderedPhoto = document.querySelector('.gallery>ul');
-          const elementCount = renderedPhoto.childElementCount;
           renderedPhoto.append(link);
           if (elementCount >= response.data.totalHits) {
             Notiflix.Notify.failure(
               "We're sorry, but you've reached the end of search results."
             );
             loadMoreBtn.style.display = 'none';
-            return false;
           }
           const { height: cardHeight } = document
             .querySelector('.gallery-list')
@@ -96,6 +95,9 @@ const search = async event => {
           });
         } else {
           photoList.append(link);
+          if (elementCount + 1 >= response.data.total) {
+            loadMoreBtn.style.display = 'none';
+          }
         }
         lightbox.refresh();
       }
@@ -135,14 +137,16 @@ function backToTop() {
 
 backTop.addEventListener('click', backToTop);
 
-const switchMethod = document.querySelector('.switch-method');
-if (switchMethod.checked === false) {
-  console.log('dupa');
-}
-
 const infiniteScroll = event => {
-  if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-    console.log('dupa');
-    loadMoreBtn.click();
+  const switchMethod2 = document.querySelector('.switch-method input').checked;
+  if (switchMethod2 === true) {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+      loadMoreBtn.click();
+    }
+  } else {
+    return false;
   }
 };
+
+const switchMethod = document.querySelector('.switch-method');
+switchMethod.addEventListener('click', infiniteScroll);
